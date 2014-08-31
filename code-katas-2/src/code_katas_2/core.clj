@@ -5,12 +5,14 @@
   "Escribir una funcion que acepte una funcion parcial con cantidad de argumentos desconocida,
    retornar una funcion equivalente de n argumentos"
   ;en este ejercicio creo que debemos utilizar la funcion partial.
-  ;segun los ejemplos vistos en la documentacion http://clojuredocs.org/clojure_core/clojure.core/partial 
+  ;la documentacion del partial http://clojuredocs.org/clojure_core/clojure.core/partial 
+  ;estudiando las ppt del curso vemos que podemos utilizar la funcion let http://clojuredocs.org/clojure_core/clojure.core/let
   
   [f]
+  (partial(fn [f & args] ))
   
 
-  )
+           )
 
 
 (defn search
