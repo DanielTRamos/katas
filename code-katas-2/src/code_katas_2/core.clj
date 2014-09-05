@@ -16,11 +16,19 @@
      f)
   )
 
-
+;Documentacion utilizada para la funcion search
+;funcion ffirst http://clojuredocs.org/clojure_core/clojure.core/ffirst
+;funcion apply http://clojuredocs.org/clojure_core/clojure.core/apply
+;funcion let, http://clojuredocs.org/clojure_core/clojure.core/let  
 (defn search
   "Dado un numero cualquiera de secuencias, cada una ya ordenada de menor a mayor, encontrar el numero
    mas chico que aparezca en todas las secuencias, las secuencias pueden ser infinitas."
-  [& seqs]
+  ([& seqs]
+    ((fn [t] 
+    (let [f (map first t) m (apply min f)] ;primero se toma el primer de t y se guarda en f, luego se aplica la funcion min a f y se guarda en m
+    (if (apply = f)
+    (ffirst t); el ffirst funciona como (first(first(t))), osea el primero del primero de t(una sequencia)
+    (recur (map #(if (= m (first %)) (rest %) %) t))))) seqs));utilizo una funcion anonima para evaluar con un if si m es igual a t, si es asi llamo recursivamente con el primer elemento, el resto y con argumento sequs
   )
 
 
