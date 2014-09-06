@@ -37,6 +37,15 @@
    retorne una nueva coleccion donde el valor es insertado intercalado cada dos argumentos
    que cumplan el predicado"
   [predicado valor secuencia]
+  ((fn ins [predicado valor s1 s2]
+     (lazy-seq
+     (let [a (seq s1) b (seq s2)]
+     (if (and a b)
+     (cons (first a)
+     (if (p (first a) (first b))
+     (cons v (ins p v (rest a) (rest b)))
+     (ins p v (rest a) (rest b))))
+     a)))) p v s (rest s))
   )
 
 
@@ -47,4 +56,7 @@
    La funcion debe aceptar una secuencia inicial de numeros, y devolver una secuencia infinita de compresiones, donde
    cada nuevo elemento es el elemento anterior comprimido."
   [secuencia]
+    (drop 1 (iterate (fn [s]
+    (mapcat (juxt count first)
+    (partition-by identity s))) s))
   )
